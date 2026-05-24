@@ -1,137 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ResearchForge Agents — AI Research Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResearchForge — Multi-Agent Crypto Research Intelligence</title>
+<meta name="description" content="Autonomous research agents that analyze tokens, generate theses, score conviction, and produce reviewer-ready evidence bundles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Space Grotesk',sans-serif;background:#0c0a1a;color:#e0dff0;min-height:100vh}
-.mesh{background-image:radial-gradient(at 30% 20%,rgba(139,92,246,0.15) 0,transparent 50%),radial-gradient(at 70% 80%,rgba(236,72,153,0.1) 0,transparent 50%)}
-.card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;transition:all .3s}
-.card:hover{border-color:rgba(139,92,246,0.4);box-shadow:0 0 40px rgba(139,92,246,0.08)}
-.glow{box-shadow:0 0 60px rgba(139,92,246,0.15)}
-input[type="text"]{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:white;border-radius:12px;padding:12px 16px;width:100%;font-size:14px;outline:none}
-input[type="text"]:focus{border-color:rgba(139,92,246,0.5)}
-.tag{padding:4px 12px;border-radius:9999px;font-size:11px;font-weight:600}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.fade{animation:fadeUp .6s ease-out forwards}
-.f1{animation-delay:.1s;opacity:0}.f2{animation-delay:.2s;opacity:0}.f3{animation-delay:.3s;opacity:0}.f4{animation-delay:.4s;opacity:0}
-.chart-box{position:relative;height:200px}
+:root{--bg:#0d0815;--panel:#160d28;--line:#2e1f50;--violet:#a855f7;--fuchsia:#d946ef;--rose:#fb7185;--amber:#fbbf24;--lime:#84cc16;--cyan:#22d3ee;--text:#f0eaff;--muted:#8b7db5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 10%,rgba(168,85,247,.22),transparent 38%),radial-gradient(ellipse at 75% 85%,rgba(217,70,239,.16),transparent 40%),radial-gradient(ellipse at 50% 50%,rgba(251,113,133,.06),transparent 50%),linear-gradient(160deg,#090612 0%,#120b20 50%,#0a0610 100%);color:var(--text);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+.grid-overlay{position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:radial-gradient(circle,rgba(168,85,247,.3) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse at 50% 30%,#000,transparent 75%)}
+.orb{position:fixed;border-radius:999px;filter:blur(60px);pointer-events:none;opacity:.22}.orb.a{width:300px;height:300px;background:#a855f7;top:80px;right:100px}.orb.b{width:250px;height:250px;background:#d946ef;bottom:60px;left:60px}.orb.c{width:180px;height:180px;background:#fb7185;top:40%;left:50%}
+.shell{max-width:1520px;margin:0 auto;padding:20px}
+.topbar{display:flex;align-items:center;justify-content:space-between;height:68px;border:1px solid rgba(139,125,181,.16);background:rgba(13,8,21,.78);backdrop-filter:blur(16px);border-radius:26px;padding:0 24px;box-shadow:0 18px 70px rgba(0,0,0,.3)}
+.brand{display:flex;align-items:center;gap:14px}.logo{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,var(--violet),var(--fuchsia));display:grid;place-items:center;font-size:22px;box-shadow:0 0 30px rgba(168,85,247,.4)}
+.brand h1{font-family:'Space Grotesk';font-size:19px;margin:0}.brand p{margin:2px 0 0;font:11px JetBrains Mono;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
+.pills{display:flex;gap:10px;flex-wrap:wrap}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(168,85,247,.22);background:rgba(168,85,247,.07);color:#d4bfff;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:700}.dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.grid3{display:grid;grid-template-columns:310px 1fr 340px;gap:16px;margin-top:16px;min-height:780px}
+.left,.right,.panel{border:1px solid rgba(139,125,181,.14);background:linear-gradient(180deg,rgba(22,13,40,.82),rgba(12,8,21,.72));backdrop-filter:blur(14px);border-radius:28px;box-shadow:0 22px 80px rgba(0,0,0,.26)}.left,.right{padding:16px}
+.scenario-list{display:grid;gap:10px;margin-top:10px}
+.scenario-btn{width:100%;text-align:left;border:1px solid rgba(139,125,181,.14);background:rgba(255,255,255,.03);color:#c4b8e0;border-radius:18px;padding:14px 15px;cursor:pointer;transition:.2s}.scenario-btn:hover{border-color:rgba(168,85,247,.35);background:rgba(168,85,247,.06)}.scenario-btn.active{border-color:rgba(168,85,247,.5);background:rgba(168,85,247,.1);color:#fff;box-shadow:0 0 28px rgba(168,85,247,.12)}
+.scenario-btn h4{margin:0 0 4px;font-family:'Space Grotesk';font-size:15px}.scenario-btn p{margin:0;font-size:12px;color:#9a8cbe;line-height:1.45}
+.conviction{margin-top:16px;padding:16px;border:1px solid rgba(217,70,239,.2);background:linear-gradient(135deg,rgba(217,70,239,.1),rgba(168,85,247,.06));border-radius:22px}.conviction .big{font-family:'Space Grotesk';font-size:48px;font-weight:700;line-height:1;background:linear-gradient(135deg,#e879f9,#fb7185);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.conviction p{margin:6px 0 0;color:var(--muted);font-size:12px}
+.section-label{font:11px JetBrains Mono;color:#6d5f94;letter-spacing:.16em;text-transform:uppercase;margin:14px 10px 10px}
+.main{display:grid;gap:16px}.main>.panel{padding:20px}
+.hero{position:relative;overflow:hidden;padding:26px}.hero:after{content:"";position:absolute;right:40px;top:30px;width:260px;height:260px;background:radial-gradient(circle,rgba(217,70,239,.14),transparent 70%);border-radius:50%}
+.eyebrow{font:12px JetBrains Mono;color:var(--fuchsia);letter-spacing:.18em;text-transform:uppercase}.hero h2{font-family:'Space Grotesk';font-size:44px;line-height:1.04;margin:10px 0 12px;max-width:740px}.hero p{color:#b8aad6;max-width:700px;line-height:1.6;margin:0}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.btn{border:0;border-radius:16px;padding:12px 17px;font-weight:800;cursor:pointer;transition:.2s}.btn.primary{background:linear-gradient(135deg,var(--violet),var(--fuchsia));color:#fff;box-shadow:0 12px 36px rgba(168,85,247,.28)}.btn.secondary{background:rgba(255,255,255,.05);color:#d8cff5;border:1px solid rgba(139,125,181,.16)}.btn:hover{transform:translateY(-2px)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric{padding:16px}.metric span{font:11px JetBrains Mono;color:#7a6da0;text-transform:uppercase;letter-spacing:.12em}.metric strong{display:block;font-family:'Space Grotesk';font-size:32px;margin-top:7px}.metric em{font-style:normal;font-size:12px;color:#9a8cbe}.metric.high strong{color:#c084fc}.metric.mid strong{color:#fbbf24}.metric.green strong{color:#84cc16}
+.content-row{display:grid;grid-template-columns:1.4fr .6fr;gap:16px}
+.thesis-card{border:1px solid rgba(139,125,181,.16);background:rgba(255,255,255,.035);border-radius:20px;padding:16px;margin-bottom:14px}.thesis-card h4{font-family:'Space Grotesk';font-size:16px;margin:0 0 8px}.thesis-card p{color:#a498c4;font-size:13px;line-height:1.55;margin:0 0 10px}
+.tags{display:flex;gap:7px;flex-wrap:wrap}.tag{font:11px JetBrains Mono;border-radius:999px;padding:5px 10px;font-weight:700}.v-tag{background:rgba(168,85,247,.14);color:#d4bfff;border:1px solid rgba(168,85,247,.26)}.f-tag{background:rgba(217,70,239,.12);color:#f0abfc;border:1px solid rgba(217,70,239,.24)}.r-tag{background:rgba(251,113,133,.12);color:#fda4af;border:1px solid rgba(251,113,133,.24)}.a-tag{background:rgba(251,191,36,.12);color:#fde68a;border:1px solid rgba(251,191,36,.24)}
+.chart-wrap{height:230px}
+.evidence{display:grid;gap:10px}.ev{border:1px solid rgba(139,125,181,.14);background:rgba(255,255,255,.03);border-radius:16px;padding:13px}.ev h5{margin:0 0 5px;font-size:13px;font-family:'Space Grotesk'}.ev p{margin:0;font-size:12px;color:#9a8cbe;line-height:1.5}.ev .badge{display:inline-block;font:11px JetBrains Mono;border-radius:999px;padding:4px 9px;font-weight:700;margin-bottom:6px}.b-high{background:rgba(168,85,247,.14);color:#d4bfff}.b-warn{background:rgba(251,191,36,.14);color:#fde68a}.b-info{background:rgba(34,211,238,.12);color:#a5f3fc}
+.trace-list{display:grid;gap:11px}.trace-step{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}.trace-step .n{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2);font:11px JetBrains Mono;color:#d4bfff}.trace-step strong{font-size:13px}.trace-step p{margin:3px 0 0;font-size:12px;color:#8b7db5;line-height:1.5}
+.terminal{background:#040208;border:1px solid rgba(168,85,247,.16);border-radius:22px;overflow:hidden}.term-head{display:flex;gap:7px;padding:11px 14px;border-bottom:1px solid rgba(139,125,181,.1);background:rgba(255,255,255,.02)}.term-head i{width:10px;height:10px;border-radius:50%;background:#ff5f57}.term-head i:nth-child(2){background:#ffbd2e}.term-head i:nth-child(3){background:#28c840}.terminal pre{font:12px/1.7 JetBrains Mono;color:#c9b8f0;margin:0;padding:15px;white-space:pre-wrap}
+.footer{text-align:center;padding:18px;color:#6d5f94;font-size:12px}
+@media(max-width:1200px){.grid3{grid-template-columns:1fr}.left,.right{order:2}.main{order:1}.metrics{grid-template-columns:repeat(2,1fr)}.content-row{grid-template-columns:1fr}.hero h2{font-size:36px}}
+@media(max-width:680px){.shell{padding:10px}.topbar{height:auto;flex-direction:column;gap:14px;align-items:flex-start}.hero h2{font-size:30px}.metrics,.metric,.panel,.hero{padding:14px}}
 </style>
 </head>
-<body class="mesh">
-<div class="max-w-7xl mx-auto px-6 py-8">
-  <!-- Header -->
-  <div class="flex items-center justify-between mb-10 fade f1">
-    <div>
-      <div class="flex items-center gap-3 mb-2">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center glow">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+<body>
+<div class="grid-overlay"></div><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><div class="logo">🔮</div><div><h1>ResearchForge</h1><p>multi-agent research intelligence</p></div></div>
+    <div class="pills"><span class="pill"><span class="dot"></span> agents active</span><span class="pill">4 scenarios ready</span></div>
+  </header>
+  <div class="grid3">
+    <aside class="left">
+      <div class="section-label">research profiles</div>
+      <div class="scenario-list" id="scenarios">
+        <button class="scenario-btn active" data-s="token">Token Thesis Builder <p>Deep-dive on token fundamentals, catalysts, and risk factors.</p></button>
+        <button class="scenario-btn" data-s="narrative">Narrative Tracker <p>Map trending narratives and rank emerging protocols by signal strength.</p></button>
+        <button class="scenario-btn" data-s="unlock">Unlock Risk Radar <p>Model token unlock schedules, holder behavior, and price impact.</p></button>
+        <button class="scenario-btn" data-s="whale">Whale Flow Monitor <p>Track large wallet movements and infer institutional intent.</p></button>
+      </div>
+      <div class="conviction"><p>Conviction Score</p><div class="big" id="conviction">87</div><p id="convictionCopy">Strong fundamentals, moderate unlock risk. Position sizing: 4% of portfolio.</p></div>
+      <div class="mt-4 p-4 rounded-2xl border border-white/10 bg-white/4">
+        <div class="text-xs uppercase tracking-[.18em] text-slate-400 font-mono mb-3">agent roles</div>
+        <div class="space-y-2 text-sm text-slate-300"><div>• Analyst: source + synthesize</div><div>• Risk: score downside</div><div>• Thesis: build narrative</div><div>• Critic: challenge assumptions</div></div>
+      </div>
+    </aside>
+    <main class="main">
+      <section class="panel hero">
+        <div class="eyebrow">AI Research for Crypto Intelligence</div>
+        <h2 id="heroTitle">Generate token theses with multi-agent reasoning and evidence trails.</h2>
+        <p id="heroCopy">ResearchForge coordinates four specialized agents to analyze a crypto asset. Each agent contributes a perspective — fundamentals, risk, narrative, and counter-argument — then the system merges them into a scored conviction output with exportable proof.</p>
+        <div class="hero-actions"><button class="btn primary" id="runBtn">Run research simulation</button><button class="btn secondary" id="exportBtn">Export proof report</button></div>
+      </section>
+      <section class="metrics">
+        <div class="panel metric high"><span>protocols analyzed</span><strong id="m1">1,247</strong><em>+89 this week</em></div>
+        <div class="panel metric mid"><span>avg research time</span><strong id="m2">3.8m</strong><em>72% faster than manual</em></div>
+        <div class="panel metric green"><span>thesis accuracy</span><strong id="m3">91%</strong><em>validated against outcomes</em></div>
+        <div class="panel metric high"><span>contradictions caught</span><strong id="m4">34</strong><em>by critic agent</em></div>
+      </section>
+      <section class="content-row">
+        <div class="panel">
+          <div class="section-label" style="margin-top:0">latest thesis</div>
+          <div id="thesisArea"></div>
         </div>
-        <div>
-          <h1 class="text-2xl font-bold">ResearchForge</h1>
-          <p class="text-xs text-violet-400 tracking-widest">AI RESEARCH AGENTS</p>
+        <div class="panel">
+          <div class="section-label" style="margin-top:0">category distribution</div>
+          <div class="chart-wrap"><canvas id="catChart"></canvas></div>
+          <div class="section-label">confidence breakdown</div>
+          <div class="chart-wrap"><canvas id="confChart"></canvas></div>
         </div>
-      </div>
-    </div>
-    <div class="flex items-center gap-3">
-      <input type="text" placeholder="Search tokens, protocols, narratives..." class="w-80">
-      <div class="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center">
-        <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      </div>
-    </div>
+      </section>
+      <section class="panel terminal">
+        <div class="term-head"><i></i><i></i><i></i></div>
+        <pre id="termLog">researchforge@agents:~$ awaiting simulation...</pre>
+      </section>
+    </main>
+    <aside class="right">
+      <div class="section-label">agent reasoning trace</div>
+      <div class="trace-list" id="trace"></div>
+      <div class="section-label">evidence bundle</div>
+      <div class="evidence" id="evidence"></div>
+    </aside>
   </div>
-
-  <!-- Stats -->
-  <div class="grid grid-cols-4 gap-4 mb-8 fade f2">
-    <div class="card p-5 text-center">
-      <p class="text-xs text-gray-500 mb-2">Tokens Researched</p>
-      <p class="text-3xl font-bold text-white">1,847</p>
-      <p class="text-xs text-violet-400 mt-2">+156 this week</p>
-    </div>
-    <div class="card p-5 text-center">
-      <p class="text-xs text-gray-500 mb-2">Theses Generated</p>
-      <p class="text-3xl font-bold text-white">234</p>
-      <p class="text-xs text-violet-400 mt-2">+28 this week</p>
-    </div>
-    <div class="card p-5 text-center">
-      <p class="text-xs text-gray-500 mb-2">Avg Research Time</p>
-      <p class="text-3xl font-bold text-white">4.2<span class="text-lg text-gray-500">min</span></p>
-      <p class="text-xs text-emerald-400 mt-2">↓ 67% faster than manual</p>
-    </div>
-    <div class="card p-5 text-center">
-      <p class="text-xs text-gray-500 mb-2">Accuracy Score</p>
-      <p class="text-3xl font-bold text-white">87<span class="text-lg text-gray-500">%</span></p>
-      <p class="text-xs text-violet-400 mt-2">Validated against outcomes</p>
-    </div>
-  </div>
-
-  <!-- Research Output -->
-  <div class="grid grid-cols-3 gap-4 mb-8 fade f3">
-    <div class="col-span-2 card p-6">
-      <h3 class="text-sm font-semibold text-violet-300 mb-4">Latest Token Thesis: ARB (Arbitrum)</h3>
-      <div class="space-y-4">
-        <div class="flex gap-4">
-          <div class="flex-1">
-            <p class="text-xs text-gray-500 mb-1">Investment Thesis</p>
-            <p class="text-sm text-gray-300 leading-relaxed">Strong L2 fundamentals with 47% TVL growth QoQ. Ecosystem expansion driven by Stylus (Rust/C++ smart contracts) and Orbit chains. Risk factor: $1.2B token unlock scheduled Q3 2026 may create selling pressure.</p>
-          </div>
-          <div class="w-48 shrink-0">
-            <p class="text-xs text-gray-500 mb-2">Confidence Score</p>
-            <div class="h-3 rounded-full bg-gray-800 overflow-hidden mb-1">
-              <div class="h-full rounded-full bg-gradient-to-r from-violet-500 to-pink-500" style="width:87%"></div>
-            </div>
-            <p class="text-xs text-violet-400 text-right">87/100</p>
-          </div>
-        </div>
-        <div class="flex gap-2 flex-wrap">
-          <span class="tag bg-violet-500/20 text-violet-300">Layer 2</span>
-          <span class="tag bg-pink-500/20 text-pink-300">DeFi</span>
-          <span class="tag bg-blue-500/20 text-blue-300">Infrastructure</span>
-          <span class="tag bg-amber-500/20 text-amber-300">Token Unlock Risk</span>
-        </div>
-      </div>
-    </div>
-    <div class="card p-6">
-      <h3 class="text-sm font-semibold text-violet-300 mb-4">Research Distribution</h3>
-      <div class="chart-box"><canvas id="researchChart"></canvas></div>
-    </div>
-  </div>
-
-  <!-- Agent Output -->
-  <div class="card p-6 fade f4">
-    <div class="flex items-center gap-3 mb-4">
-      <div class="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center">
-        <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0"/></svg>
-      </div>
-      <div>
-        <h3 class="text-sm font-semibold text-white">Agent Research Log</h3>
-        <p class="text-xs text-gray-500">Multi-agent collaborative analysis</p>
-      </div>
-    </div>
-    <div class="space-y-3">
-      <div class="p-4 rounded-xl bg-violet-500/10 border border-violet-500/20">
-        <div class="flex items-center gap-2 mb-2"><span class="tag bg-violet-500/20 text-violet-300">ANALYST AGENT</span><span class="text-xs text-gray-500">2 min ago</span></div>
-        <p class="text-sm text-gray-200 font-medium mb-1">Thesis: ARB (Arbitrum) — Strong Buy</p>
-        <p class="text-xs text-gray-400">Cross-referenced 12 data sources including on-chain metrics, developer activity, and institutional flows. Key catalyst: Stylus mainnet launch could drive 2x developer growth.</p>
-      </div>
-      <div class="p-4 rounded-xl bg-pink-500/10 border border-pink-500/20">
-        <div class="flex items-center gap-2 mb-2"><span class="tag bg-pink-500/20 text-pink-300">RISK AGENT</span><span class="text-xs text-gray-500">5 min ago</span></div>
-        <p class="text-sm text-gray-200 font-medium mb-1">Risk Assessment: Token Unlock Schedule</p>
-        <p class="text-xs text-gray-400">$1.2B ARB unlock in Q3 represents 8.5% of circulating supply. Historical unlock events show average -12% price impact within 7 days. Recommend position sizing accordingly.</p>
-      </div>
-    </div>
-  </div>
+  <footer class="footer">Built for Xiaomi MiMo 100T Creator Incentive — ResearchForge Agents / Project #03</footer>
 </div>
 <script>
-new Chart(document.getElementById('researchChart').getContext('2d'),{
-  type:'doughnut',
-  data:{labels:['DeFi','L2/Infrastructure','Gaming','NFT','AI/ML','Other'],datasets:[{data:[35,25,15,12,8,5],backgroundColor:['#8b5cf6','#ec4899','#3b82f6','#f59e0b','#10b981','#6b7280'],borderWidth:0}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'circle',font:{size:11},padding:12}}},cutout:'60%'}
-});
+const D={
+token:{title:'Generate token theses with multi-agent reasoning and evidence trails.',copy:'Four agents collaborate on ARB: Analyst gathers on-chain metrics and developer activity. Risk models the token unlock schedule. Thesis synthesizes a directional view. Critic challenges the bull case with historical comparisons.',conviction:87,convCopy:'Strong fundamentals, moderate unlock risk. Position sizing: 4% of portfolio.',metrics:['1,247','3.8m','91%','34'],thesis:{token:'ARB (Arbitrum)',thesis:'Strong L2 fundamentals with 47% TVL growth QoQ. Stylus launch brings Rust/C++ smart contracts to Arbitrum, potentially doubling developer count. Orbit chain ecosystem expanding with 14 mainnet chains. Risk: $1.2B token unlock Q3 represents 8.5% of circulating supply. Historical unlocks show avg -12% within 7 days. Recommendation: accumulate on dips with position limit 4%.',tags:[['v-tag','Layer 2'],['f-tag','DeFi'],['r-tag','Unlock Risk'],['a-tag','Infrastructure']]},trace:[['01','Source','Analyst pulls on-chain TVL, DAU, dev commits, and funding data from 12 sources.'],['02','Risk','Risk agent models unlock schedule and flags $1.2B cliff event in Q3.'],['03','Synthesize','Thesis agent merges signals into directional view with confidence weighting.'],['04','Challenge','Critic compares to historical L2 unlock events, raises dilution concern.'],['05','Resolve','Final conviction: 87/100 with 4% max position sizing.']],evidence:[['b-high','ON-CHAIN','TVL +47% QoQ, 1.2M weekly active addresses, 280+ active repos.'],['b-warn','TOKEN UNLOCK','$1.2B ARB unlocks Aug 2026. Historical avg: -12% in 7d.'],['b-info','DEVELOPER','Stylus SDK downloads +340% since mainnet announcement.']],log:['[analyst] sources: defillama, github, dune, token_terminal, messari','[analyst] tvl_growth=+47% qoq dev_commits=280/wk dau=1.2m','[risk] unlock_event: 2026-08-15 amount=1.2b circ_pct=8.5%','[risk] historical_impact: -12% avg 7d_pimpact n=6 events','[thesis] direction=moderate_bull confidence=87 position=4%','[critic] counter: previous L2 unlocks caused 15-22% drops','[resolve] conviction=87 recommendation=accumulate_on_dips']},narrative:{title:'Track emerging crypto narratives before they go mainstream.',copy:'Narrative Tracker scans social signals, developer momentum, and capital flows to surface narratives gaining traction. AI x Crypto is trending with 340% social mention growth and $2.1B in new funding across 68 protocols.',conviction:78,convCopy:'Narrative has legs but crowded positioning. Wait for pullback before full allocation.',metrics:['68','2.1B','78%','12'],thesis:{token:'AI x Crypto Narrative',thesis:'The convergence of AI and blockchain is accelerating with $2.1B in new funding this quarter. 68 protocols building at the intersection: AI agents, compute markets, model provenance, and inference verification. Social mentions up 340% QoQ. Risk: narrative is becoming crowded; many projects are vaporware. Recommend selective exposure to protocols with working products and real users. Focus: compute marketplaces and agent frameworks.',tags:[['v-tag','AI/ML'],['f-tag','Narrative'],['a-tag','Trending'],['r-tag','Crowded']]},trace:[['01','Scan','Social agent monitors 12k crypto accounts for emerging themes.'],['02','Rank','Narrative ranked by mention growth, funding, and builder activity.'],['03','Filter','Critic removes protocols without working products (38 eliminated).'],['04','Score','Confidence: 78/100. Narrative real but entry timing risky.'],['05','Recommend','Wait for 15% pullback or DCA over 6 weeks.']],evidence:[['b-high','SOCIAL','AI + crypto mentions +340% QoQ across Twitter, Farcaster, Lens.'],['b-warn','FUNDING','$2.1B deployed into 68 protocols; 42% in pre-product stage.'],['b-info','BUILDER','GitHub repos with AI+crypto tags up 180% in 90 days.']],log:['[social] mentions: ai+crypto +340% qoq top_protocols=68','[funding] total_deployed=2.1b pre_product=42%','[filter] removed: 38 vaporware protocols','[score] narrative_confidence=78 crowdedness=high','[recommend] dca_over=6w pullback_threshold=15%']},unlock:{title:'Model token unlock schedules and predict price impact before it happens.',copy:'The Unlock Risk Radar models cliff events, vesting schedules, and historical holder behavior. It predicts price impact, identifies potential sellers, and recommends hedging strategies.',conviction:62,convCopy:'High-risk cliff event. Reduce exposure before unlock window or hedge with options.',metrics:['24','8.5%','62%','7'],thesis:{token:'ARB Unlock Analysis',thesis:'Cliff unlock of 8.5% circulating supply scheduled Aug 15, 2026. Analysis of 6 historical L2 unlock events shows average -12% impact within 7 days, with range -8% to -22%. Top 50 holders analyzed: 3 wallets have history of selling within 48h of unlock. Estimated sell pressure: $340M in first week. Mitigation: reduce position by 50% before Aug 8, hedge remainder with protective puts.',tags:[['r-tag','High Risk'],['a-tag','Quantitative'],['v-tag','Event-Driven'],['f-tag','Hedging']]},trace:[['01','Schedule','Map all vesting tranches and cliff dates for target token.'],['02','History','Analyze price behavior around 6 previous unlock events.'],['03','Holder','Profile top 50 wallets for historical unlock selling patterns.'],['04','Model','Monte Carlo simulation: 10k runs, mean impact -11.8%.'],['05','Hedge','Recommend: 50% reduction + protective puts for remainder.']],evidence:[['b-warn','SCHEDULE','Cliff: Aug 15 2026. Amount: 8.5% circ supply = $1.2B at current price.'],['b-high','HOLDER BEHAVIOR','3 of top 50 wallets sold within 48h of last 2 unlocks.'],['b-info','SIMULATION','Monte Carlo n=10000: mean=-11.8% p5=-22% p95=-4%']],log:['[schedule] cliff_date=2026-08-15 amount=1.2b circ_pct=8.5%','[history] n_events=6 mean_impact=-12% range=[-22%,-8%]','[holders] top50_sellers=3 sell_window=48h','[model] monte_carlo n=10000 mean=-11.8% p5=-22% p95=-4%','[hedge] reduce=50% timing=-7d puts=protective']},whale:{title:'Track large wallet movements and infer institutional intent.',copy:'Whale Flow Monitor watches for unusual on-chain transfers, exchange inflows/outflows, and smart money positioning. A $47M ETH transfer to Coinbase was detected and classified as likely OTC preparation.',conviction:71,convCopy:'Smart money accumulating but exchange inflows suggest short-term distribution risk.',metrics:['142','$47M','71%','5'],thesis:{token:'ETH Whale Flow Analysis',thesis:'Detected $47M ETH transfer to Coinbase Prime (institutional custody). Cross-referencing with on-chain patterns: similar transfers preceded 3 sell events in last 6 months. However, 5 smart money wallets with >85% win rate are accumulating ETH via DEX over last 14 days. Net flow: slightly bearish short-term (exchange inflow > outflow), bullish medium-term (smart money accumulation). Recommendation: neutral-to-long, size down short-term exposure.',tags:[['v-tag','On-Chain'],['r-tag','Distribution'],['f-tag','Smart Money'],['a-tag','Institutional']]},trace:[['01','Detect','On-chain monitor flags $47M ETH transfer to Coinbase Prime.'],['02','Classify','Pattern matches 3 previous sell events (correlation: 0.82).'],['03','Counter','Smart money tracker finds 5 high-winrate wallets accumulating.'],['04','Net','Exchange inflow > outflow by $12M net. Short-term bearish.'],['05','Position','Recommend: neutral-long, reduce short-term size by 30%.']],evidence:[['b-warn','WHALE ALERT','$47M ETH → Coinbase Prime. Previous similar transfers preceded -6% avg.'],['b-high','SMART MONEY','5 wallets (85%+ winrate) accumulated $23M ETH via DEX in 14d.'],['b-info','NET FLOW','Exchange inflow > outflow: +$12M net. Short-term distribution signal.']],log:['[detect] tx_hash=0x... amount=47m_eth dest=coinbase_prime','[classify] pattern_match: 3/6 sell_events corr=0.82','[counter] smart_money: 5 wallets accumulated $23m dex 14d','[flow] exchange_net=+12m inflow>outflow short_term=bearish','[position] direction=neutral_long reduce_short=30%']}};
+let catChart,confChart;
+function badge(b){return'<span class="badge '+b[0]+'">'+b[1]+'</span>'}
+function tagHTML(t){return'<span class="tag '+t[0]+'">'+t[1]+'</span>'}
+function render(s){
+document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.toggle('active',b.dataset.s===s));
+const d=D[s];heroTitle.textContent=d.title;heroCopy.textContent=d.copy;
+conviction.textContent=d.conviction;convictionCopy.textContent=d.convCopy;
+m1.textContent=d.metrics[0];m2.textContent=d.metrics[1];m3.textContent=d.metrics[2];m4.textContent=d.metrics[3];
+thesisArea.innerHTML='<div class="thesis-card"><h4>'+d.thesis.token+'</h4><p>'+d.thesis.thesis+'</p><div class="tags">'+d.thesis.tags.map(tagHTML).join('')+'</div></div>';
+trace.innerHTML=d.trace.map((t,i)=>'<div class="trace-step"><div class="n">'+String(i+1).padStart(2,'0')+'</div><div><strong>'+t[1]+'</strong><p>'+t[2]+'</p></div></div>').join('');
+evidence.innerHTML=d.evidence.map(e=>'<div class="ev">'+badge(e)+'<h5>'+e[1]+'</h5><p>'+e[2]+'</p></div>').join('');
+termLog.textContent='researchforge@agents:~$ run --profile '+s+'\n'+d.log.join('\n')+'\n[status] research committed | conviction: '+d.conviction+'/100';
+updateCharts(s);
+}
+function updateCharts(s){const cats={token:[35,25,15,12,8,5],narrative:[40,15,10,5,25,5],unlock:[15,10,20,5,10,40],whale:[30,20,15,10,15,10]}[s];const confs={token:[92,78,85,65],narrative:[82,70,88,55],unlock:[75,90,60,45],whale:[80,65,88,72]}[s];
+if(catChart){catChart.data.datasets[0].data=cats;catChart.update();}
+if(confChart){confChart.data.datasets[0].data=confs;confChart.update();}}
+function initCharts(){
+catChart=new Chart(document.getElementById('catChart'),{type:'doughnut',data:{labels:['DeFi','L2','AI/ML','Gaming','Infrastructure','Other'],datasets:[{data:[35,25,15,12,8,5],backgroundColor:['#a855f7','#d946ef','#22d3ee','#fbbf24','#fb7185','#6b7280'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{color:'#8b7db5',usePointStyle:true,pointStyle:'circle',font:{size:11}}}}}});
+confChart=new Chart(document.getElementById('confChart'),{type:'radar',data:{labels:['Fundamentals','Risk','Narrative','Timing'],datasets:[{data:[92,78,85,65],borderColor:'#d946ef',backgroundColor:'rgba(217,70,239,.12)',pointBackgroundColor:'#a855f7',pointBorderWidth:0,pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{beginAtZero:true,max:100,ticks:{display:false},grid:{color:'rgba(139,125,181,.12)'},pointLabels:{color:'#8b7db5',font:{size:11}}}},plugins:{legend:{display:false}}}});}
+}
+document.querySelectorAll('.scenario-btn').forEach(b=>b.addEventListener('click',()=>render(b.dataset.s)));
+runBtn.addEventListener('click',()=>{const keys=Object.keys(D);const idx=keys.indexOf([...document.querySelectorAll('.scenario-btn')].find(b=>b.classList.contains('active')).dataset.s);render(keys[(idx+1)%keys.length]);});
+exportBtn.addEventListener('click',()=>{const s=[...document.querySelectorAll('.scenario-btn')].find(b=>b.classList.contains('active')).dataset.s;const d=D[s];const r='ResearchForge Proof Report\nProfile: '+s+'\nConviction: '+d.conviction+'/100\nToken: '+d.thesis.token+'\nThesis: '+d.thesis.thesis+'\nTrace:\n'+d.trace.map(x=>'- '+x[1]+': '+x[2]).join('\n')+'\nEvidence:\n'+d.evidence.map(x=>'- ['+x[1]+'] '+x[2]).join('\n')+'\nLog:\n'+d.log.join('\n');const blob=new Blob([r],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='researchforge-proof-report.txt';a.click();URL.revokeObjectURL(a.href);});
+initCharts();render('token');
 </script>
 </body>
 </html>

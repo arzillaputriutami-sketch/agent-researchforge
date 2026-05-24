@@ -1,67 +1,102 @@
-# ResearchForge Agents
+<p align="center">
+  <img src="https://img.shields.io/badge/product-agentic%20intelligence-7c3aed?style=for-the-badge" alt="Product">
+  <img src="https://img.shields.io/badge/python-3.10%2B-2563eb?style=for-the-badge" alt="Python">
+  <img src="https://img.shields.io/badge/license-MIT-16a34a?style=for-the-badge" alt="License">
+</p>
 
-ResearchForge is a multi-agent crypto research intelligence console. It demonstrates how specialized AI agents collaborate to analyze tokens, track narratives, model unlock risk, and monitor whale flows — then produce a scored conviction output with an exportable evidence bundle.
+<h1 align="center">ResearchForge Agents</h1>
+<p align="center"><b>Research swarm that extracts claims, challenges evidence, scores conviction, and produces analyst-ready briefs.</b></p>
 
-Live demo: `https://arzillaputriutami-sketch.github.io/agent-researchforge/`
+<p align="center">
+  <a href="#-what-this-is">What this is</a> •
+  <a href="#-product-surface">Product surface</a> •
+  <a href="#-quick-start">Quick start</a> •
+  <a href="#-architecture">Architecture</a>
+</p>
 
-## Problem
+---
 
-Crypto research requires synthesizing data from dozens of sources: on-chain metrics, developer activity, social signals, token schedules, whale movements, and institutional flows. Manual research is slow, biased, and rarely produces structured evidence that a third party can audit.
+## 🎯 What this is
 
-## Solution
+ResearchForge Agents is a real repository product, not just a landing page. It includes a deterministic multi-agent reasoning core, an optional FastAPI API boundary, CLI demo runner, tests, CI, architecture docs, sample scenarios, and the existing Vercel-ready dashboard.
 
-ResearchForge coordinates four specialized agents:
+**Primary users:** research analysts and venture scouts.
 
-- **Analyst** — sources and synthesizes raw data
-- **Risk** — scores downside scenarios
-- **Thesis** — builds a directional narrative
-- **Critic** — challenges assumptions and surfaces contradictions
+## 💼 Product surface
 
-Each agent produces structured output. The system merges these into a conviction score with a reasoning trace and evidence bundle.
+- **Reasoning core:** `backend/swarm.py` models specialist agents, confidence, trace IDs, risk scoring, and action plans.
+- **API boundary:** `backend/app.py` exposes `/health`, `/scenarios`, `/analyze`, and `/demo-report`.
+- **CLI console:** `python cli.py --all` generates operator-grade reports without external API keys.
+- **Demo dashboard:** `index.html` remains deployable as a static product surface.
+- **Quality gates:** `tests/test_swarm.py` plus `.github/workflows/ci.yml` keep the product verifiable.
 
-## Demo features
+## 🧠 Agent team
 
-- Four interactive research profiles:
-  - Token Thesis Builder
-  - Narrative Tracker
-  - Unlock Risk Radar
-  - Whale Flow Monitor
-- Conviction score with position sizing recommendation
-- Agent reasoning trace (5-step process)
-- Evidence bundle with severity labels
-- Category distribution chart (doughnut)
-- Confidence breakdown chart (radar)
-- Terminal-style agent log transcript
-- Exportable proof report (plain text)
-- No API keys, wallets, or backend services required
+- **Claim Extractor**
+- **Contradiction Hunter**
+- **Citation Graph Builder**
+- **Narrative Risk Analyst**
+- **Briefing Compiler**
 
-## AI model framing
+## 🚀 Quick start
 
-In production, each agent role could be backed by a long-context model like MiMo:
+```bash
+git clone https://github.com/<owner>/agent-researchforge.git
+cd agent-researchforge
+python3 cli.py --all
+```
 
-- Analyst: multi-source data retrieval and synthesis
-- Risk: quantitative modeling and Monte Carlo simulation
-- Thesis: narrative construction from structured signals
-- Critic: adversarial reasoning and historical comparison
+Optional API mode:
 
-The browser demo uses deterministic fixtures to demonstrate the complete workflow safely.
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+uvicorn backend.app:app --reload
+```
 
-## Reviewer usage path
+## 🧪 Test
 
-1. Open the live demo.
-2. Click each research profile in the left panel.
-3. Press **Run research simulation** to cycle profiles.
-4. Inspect the thesis, agent trace, evidence bundle, and charts.
-5. Press **Export proof report** to download a structured text report.
+```bash
+python3 -m pytest -q
+python3 backend/swarm.py | python3 -m json.tool >/dev/null
+```
 
-## Tech stack
+## 🏗️ Architecture
 
-- Static HTML
-- Tailwind CDN
-- Chart.js (doughnut + radar)
-- Vanilla JavaScript
-- GitHub Pages deployment
+```mermaid
+flowchart LR
+  A[Signals] --> B[Specialist agents]
+  B --> C[Verifier]
+  C --> D[Risk score]
+  D --> E[Operator action plan]
+  E --> F[Dashboard / API / CLI]
+```
 
-## Safety
+## 📁 Repository map
 
-This repository contains no private credentials, wallet material, server-side code, or live API endpoints. All data is synthetic and deterministic.
+```text
+backend/swarm.py          Multi-agent reasoning engine
+backend/app.py            Optional FastAPI service boundary
+cli.py                    Local operator console
+tests/test_swarm.py       CI-friendly product tests
+examples/sample_scenario.json  Demo input payload
+docs/ARCHITECTURE.md      Reasoning-loop architecture
+docs/PRODUCT_SPEC.md      Product requirements and roadmap
+index.html                Static live dashboard
+```
+
+## 🗺️ Roadmap
+
+- [x] Static dashboard proof
+- [x] Multi-agent reasoning core
+- [x] CLI demo flow
+- [x] API boundary
+- [x] CI tests
+- [ ] Real-time connector adapters
+- [ ] Hosted report export
+- [ ] Human approval workflow
+
+## 📄 License
+
+MIT.

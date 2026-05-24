@@ -1,0 +1,9 @@
+[project]
+name = "agent-researchforge"
+version = "1.0.0"
+description = "Research swarm that extracts claims, challenges evidence, scores conviction, and produces analyst-ready briefs."
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

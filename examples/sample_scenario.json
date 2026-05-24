@@ -1,0 +1,10 @@
+{
+  "scenario": "new L2 thesis",
+  "signals": {
+    "source_quality": 50,
+    "claim_overlap": 57,
+    "contradiction_count": 64,
+    "market_attention": 71,
+    "evidence_age_days": 78
+  }
+}

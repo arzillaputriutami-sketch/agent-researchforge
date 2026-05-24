@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResearchForge Agents — AI Research Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Space Grotesk',sans-serif;background:#0c0a1a;color:#e0dff0;min-height:100vh}
+.mesh{background-image:radial-gradient(at 30% 20%,rgba(139,92,246,0.15) 0,transparent 50%),radial-gradient(at 70% 80%,rgba(236,72,153,0.1) 0,transparent 50%)}
+.card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;transition:all .3s}
+.card:hover{border-color:rgba(139,92,246,0.4);box-shadow:0 0 40px rgba(139,92,246,0.08)}
+.glow{box-shadow:0 0 60px rgba(139,92,246,0.15)}
+input[type="text"]{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:white;border-radius:12px;padding:12px 16px;width:100%;font-size:14px;outline:none}
+input[type="text"]:focus{border-color:rgba(139,92,246,0.5)}
+.tag{padding:4px 12px;border-radius:9999px;font-size:11px;font-weight:600}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade{animation:fadeUp .6s ease-out forwards}
+.f1{animation-delay:.1s;opacity:0}.f2{animation-delay:.2s;opacity:0}.f3{animation-delay:.3s;opacity:0}.f4{animation-delay:.4s;opacity:0}
+.chart-box{position:relative;height:200px}
+</style>
+</head>
+<body class="mesh">
+<div class="max-w-7xl mx-auto px-6 py-8">
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-10 fade f1">
+    <div>
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center glow">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold">ResearchForge</h1>
+          <p class="text-xs text-violet-400 tracking-widest">AI RESEARCH AGENTS</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <input type="text" placeholder="Search tokens, protocols, narratives..." class="w-80">
+      <div class="w-10 h-10 rounded-xl bg-violet-500/20 flex items-center justify-center">
+        <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="grid grid-cols-4 gap-4 mb-8 fade f2">
+    <div class="card p-5 text-center">
+      <p class="text-xs text-gray-500 mb-2">Tokens Researched</p>
+      <p class="text-3xl font-bold text-white">1,847</p>
+      <p class="text-xs text-violet-400 mt-2">+156 this week</p>
+    </div>
+    <div class="card p-5 text-center">
+      <p class="text-xs text-gray-500 mb-2">Theses Generated</p>
+      <p class="text-3xl font-bold text-white">234</p>
+      <p class="text-xs text-violet-400 mt-2">+28 this week</p>
+    </div>
+    <div class="card p-5 text-center">
+      <p class="text-xs text-gray-500 mb-2">Avg Research Time</p>
+      <p class="text-3xl font-bold text-white">4.2<span class="text-lg text-gray-500">min</span></p>
+      <p class="text-xs text-emerald-400 mt-2">↓ 67% faster than manual</p>
+    </div>
+    <div class="card p-5 text-center">
+      <p class="text-xs text-gray-500 mb-2">Accuracy Score</p>
+      <p class="text-3xl font-bold text-white">87<span class="text-lg text-gray-500">%</span></p>
+      <p class="text-xs text-violet-400 mt-2">Validated against outcomes</p>
+    </div>
+  </div>
+
+  <!-- Research Output -->
+  <div class="grid grid-cols-3 gap-4 mb-8 fade f3">
+    <div class="col-span-2 card p-6">
+      <h3 class="text-sm font-semibold text-violet-300 mb-4">Latest Token Thesis: ARB (Arbitrum)</h3>
+      <div class="space-y-4">
+        <div class="flex gap-4">
+          <div class="flex-1">
+            <p class="text-xs text-gray-500 mb-1">Investment Thesis</p>
+            <p class="text-sm text-gray-300 leading-relaxed">Strong L2 fundamentals with 47% TVL growth QoQ. Ecosystem expansion driven by Stylus (Rust/C++ smart contracts) and Orbit chains. Risk factor: $1.2B token unlock scheduled Q3 2026 may create selling pressure.</p>
+          </div>
+          <div class="w-48 shrink-0">
+            <p class="text-xs text-gray-500 mb-2">Confidence Score</p>
+            <div class="h-3 rounded-full bg-gray-800 overflow-hidden mb-1">
+              <div class="h-full rounded-full bg-gradient-to-r from-violet-500 to-pink-500" style="width:87%"></div>
+            </div>
+            <p class="text-xs text-violet-400 text-right">87/100</p>
+          </div>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          <span class="tag bg-violet-500/20 text-violet-300">Layer 2</span>
+          <span class="tag bg-pink-500/20 text-pink-300">DeFi</span>
+          <span class="tag bg-blue-500/20 text-blue-300">Infrastructure</span>
+          <span class="tag bg-amber-500/20 text-amber-300">Token Unlock Risk</span>
+        </div>
+      </div>
+    </div>
+    <div class="card p-6">
+      <h3 class="text-sm font-semibold text-violet-300 mb-4">Research Distribution</h3>
+      <div class="chart-box"><canvas id="researchChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Agent Output -->
+  <div class="card p-6 fade f4">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-8 h-8 rounded-lg bg-violet-500/20 flex items-center justify-center">
+        <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0"/></svg>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold text-white">Agent Research Log</h3>
+        <p class="text-xs text-gray-500">Multi-agent collaborative analysis</p>
+      </div>
+    </div>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-violet-500/10 border border-violet-500/20">
+        <div class="flex items-center gap-2 mb-2"><span class="tag bg-violet-500/20 text-violet-300">ANALYST AGENT</span><span class="text-xs text-gray-500">2 min ago</span></div>
+        <p class="text-sm text-gray-200 font-medium mb-1">Thesis: ARB (Arbitrum) — Strong Buy</p>
+        <p class="text-xs text-gray-400">Cross-referenced 12 data sources including on-chain metrics, developer activity, and institutional flows. Key catalyst: Stylus mainnet launch could drive 2x developer growth.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-pink-500/10 border border-pink-500/20">
+        <div class="flex items-center gap-2 mb-2"><span class="tag bg-pink-500/20 text-pink-300">RISK AGENT</span><span class="text-xs text-gray-500">5 min ago</span></div>
+        <p class="text-sm text-gray-200 font-medium mb-1">Risk Assessment: Token Unlock Schedule</p>
+        <p class="text-xs text-gray-400">$1.2B ARB unlock in Q3 represents 8.5% of circulating supply. Historical unlock events show average -12% price impact within 7 days. Recommend position sizing accordingly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+new Chart(document.getElementById('researchChart').getContext('2d'),{
+  type:'doughnut',
+  data:{labels:['DeFi','L2/Infrastructure','Gaming','NFT','AI/ML','Other'],datasets:[{data:[35,25,15,12,8,5],backgroundColor:['#8b5cf6','#ec4899','#3b82f6','#f59e0b','#10b981','#6b7280'],borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'circle',font:{size:11},padding:12}}},cutout:'60%'}
+});
+</script>
+</body>
+</html>

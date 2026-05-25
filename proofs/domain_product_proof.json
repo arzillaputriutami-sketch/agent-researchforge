@@ -1,0 +1,30 @@
+{
+  "product": "Agent ResearchForge",
+  "repo": "https://github.com/arzillaputriutami-sketch/agent-researchforge",
+  "upgrade": "V5 domain productization",
+  "domain": "research synthesis / knowledge ops",
+  "signals": [
+    "source_count",
+    "citation_density",
+    "novelty_score",
+    "conflict_count",
+    "confidence",
+    "staleness_days"
+  ],
+  "scenarios": [
+    "Compare three agent framework papers for production readiness",
+    "Summarize fragmented market notes into a decision memo",
+    "Detect conflicting claims across protocol documentation",
+    "Turn raw meeting notes into cited research brief"
+  ],
+  "endpoints": [
+    "/domain/signals",
+    "/domain/analyze",
+    "/domain/demo",
+    "/agent-run"
+  ],
+  "token_evidence": {
+    "total_estimated_tokens": 60964,
+    "source": "deterministic proof budget + existing MiMo pipeline"
+  }
+}

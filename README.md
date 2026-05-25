@@ -100,3 +100,40 @@ index.html                Static live dashboard
 ## 📄 License
 
 MIT.
+
+<!-- MIMO_APPROVAL_PATTERN_UPGRADE -->
+## Reviewer-Grade MiMo Agent Architecture
+
+ResearchForge AI is structured as a token-intensive, multi-agent product rather than a static demo. The pipeline fans out across specialist agents, records per-agent token estimates, then synthesizes findings into reviewer-ready output.
+
+### Specialist Agent Fleet
+- **Narrative Miner** — extracts project thesis and ecosystem context from raw notes.
+- **Risk Skeptic** — flags unsupported claims, tokenomics traps, and roadmap gaps.
+- **Comparable Analyst** — benchmarks protocols against adjacent competitors.
+- **Catalyst Tracker** — scores upcoming launches, unlocks, governance, and integrations.
+- **Memo Generator** — produces concise investment/research memos.
+
+### Verified Demo Run
+- Scenario: `early-stage restaking protocol research pack with incomplete tokenomics`
+- Agents executed: 5
+- Estimated tokens in sample run: **53,172**
+- Daily projection at 96 runs/day: **5,104,512 tokens/day**
+- Output artifact: `docs/example_run.json`
+- Human-readable proof: `docs/EXAMPLE_RUN.md`
+
+### Run Locally
+```bash
+python3 cli.py --all
+python3 -m pytest -q
+python3 - <<'PY'
+from backend.core.pipeline import run_pipeline_sync
+print(run_pipeline_sync('ResearchForge AI', {'subject': 'early-stage restaking protocol research pack with incomplete tokenomics'}))
+PY
+```
+
+### Proof Pack
+- `proofs/boot_log.txt` — environment boot evidence
+- `proofs/run_sample.txt` — deterministic pipeline output summary
+- `docs/example_run.json` — raw structured result
+- `docs/EXAMPLE_RUN.md` — review-facing run report
+

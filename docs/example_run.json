@@ -3,120 +3,120 @@
   "status": "completed",
   "mode": "deterministic-reviewer-demo",
   "latency_ms": 0,
-  "summary": "5 specialist agents completed; 2 high-priority findings; 53172 estimated tokens.",
+  "summary": "5 specialist agents completed; 2 high-priority findings; 51767 estimated tokens.",
   "token_usage": {
     "project": "ResearchForge AI",
     "events": [
       {
-        "timestamp": "2026-05-25T20:14:50.845959+00:00",
+        "timestamp": "2026-05-25T20:21:02.671264+00:00",
         "project": "ResearchForge AI",
         "agent": "Liquidity Scout",
-        "estimated_tokens": 12473,
+        "estimated_tokens": 6671,
+        "severity": "critical"
+      },
+      {
+        "timestamp": "2026-05-25T20:21:02.671283+00:00",
+        "project": "ResearchForge AI",
+        "agent": "Exploit Sentinel",
+        "estimated_tokens": 12317,
         "severity": "medium"
       },
       {
-        "timestamp": "2026-05-25T20:14:50.845978+00:00",
+        "timestamp": "2026-05-25T20:21:02.671288+00:00",
         "project": "ResearchForge AI",
-        "agent": "Exploit Sentinel",
-        "estimated_tokens": 7834,
+        "agent": "Oracle Auditor",
+        "estimated_tokens": 6758,
         "severity": "high"
       },
       {
-        "timestamp": "2026-05-25T20:14:50.845984+00:00",
-        "project": "ResearchForge AI",
-        "agent": "Oracle Auditor",
-        "estimated_tokens": 10417,
-        "severity": "medium"
-      },
-      {
-        "timestamp": "2026-05-25T20:14:50.845988+00:00",
+        "timestamp": "2026-05-25T20:21:02.671292+00:00",
         "project": "ResearchForge AI",
         "agent": "Treasury Guardian",
-        "estimated_tokens": 10981,
+        "estimated_tokens": 12489,
         "severity": "medium"
       },
       {
-        "timestamp": "2026-05-25T20:14:50.845991+00:00",
+        "timestamp": "2026-05-25T20:21:02.671295+00:00",
         "project": "ResearchForge AI",
         "agent": "Incident Reporter",
-        "estimated_tokens": 11467,
-        "severity": "critical"
+        "estimated_tokens": 13532,
+        "severity": "low"
       }
     ],
-    "total_estimated_tokens": 53172,
-    "daily_projection_tokens": 5104512,
+    "total_estimated_tokens": 51767,
+    "daily_projection_tokens": 4969632,
     "agent_count": 5
   },
   "findings": [
     {
       "agent": "Liquidity Scout",
       "role": "tracks pool depth, volatility spikes, and suspicious flow concentration",
-      "severity": "medium",
-      "confidence": 0.77,
-      "finding": "Liquidity Scout reviewed DeFi risk monitoring signal: early-stage restaking protocol research pack with incomplete tokenomics. Risk pattern=medium confidence=0.77.",
+      "severity": "critical",
+      "confidence": 0.91,
+      "finding": "Liquidity Scout reviewed DeFi risk monitoring signal: early-stage restaking protocol with incomplete tokenomics. Risk pattern=critical confidence=0.91.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=64be0fb142",
+        "subject_hash=bd45fdc554",
         "agent_stage=1"
       ],
-      "recommendation": "Run liquidity scout follow-up pass, capture artifacts, then prioritize medium items first.",
-      "estimated_tokens": 12473
+      "recommendation": "Run liquidity scout follow-up pass, capture artifacts, then prioritize critical items first.",
+      "estimated_tokens": 6671
     },
     {
       "agent": "Exploit Sentinel",
       "role": "maps events to known attack primitives and detects anomalous protocol behavior",
-      "severity": "high",
-      "confidence": 0.7,
-      "finding": "Exploit Sentinel reviewed DeFi risk monitoring signal: early-stage restaking protocol research pack with incomplete tokenomics. Risk pattern=high confidence=0.7.",
+      "severity": "medium",
+      "confidence": 0.92,
+      "finding": "Exploit Sentinel reviewed DeFi risk monitoring signal: early-stage restaking protocol with incomplete tokenomics. Risk pattern=medium confidence=0.92.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=64be0fb142",
+        "subject_hash=bd45fdc554",
         "agent_stage=2"
       ],
-      "recommendation": "Run exploit sentinel follow-up pass, capture artifacts, then prioritize high items first.",
-      "estimated_tokens": 7834
+      "recommendation": "Run exploit sentinel follow-up pass, capture artifacts, then prioritize medium items first.",
+      "estimated_tokens": 12317
     },
     {
       "agent": "Oracle Auditor",
       "role": "checks oracle drift, stale feeds, and manipulation windows",
-      "severity": "medium",
+      "severity": "high",
       "confidence": 0.62,
-      "finding": "Oracle Auditor reviewed DeFi risk monitoring signal: early-stage restaking protocol research pack with incomplete tokenomics. Risk pattern=medium confidence=0.62.",
+      "finding": "Oracle Auditor reviewed DeFi risk monitoring signal: early-stage restaking protocol with incomplete tokenomics. Risk pattern=high confidence=0.62.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=64be0fb142",
+        "subject_hash=bd45fdc554",
         "agent_stage=3"
       ],
-      "recommendation": "Run oracle auditor follow-up pass, capture artifacts, then prioritize medium items first.",
-      "estimated_tokens": 10417
+      "recommendation": "Run oracle auditor follow-up pass, capture artifacts, then prioritize high items first.",
+      "estimated_tokens": 6758
     },
     {
       "agent": "Treasury Guardian",
       "role": "scores treasury exposure and proposes emergency controls",
       "severity": "medium",
-      "confidence": 0.82,
-      "finding": "Treasury Guardian reviewed DeFi risk monitoring signal: early-stage restaking protocol research pack with incomplete tokenomics. Risk pattern=medium confidence=0.82.",
+      "confidence": 0.89,
+      "finding": "Treasury Guardian reviewed DeFi risk monitoring signal: early-stage restaking protocol with incomplete tokenomics. Risk pattern=medium confidence=0.89.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=64be0fb142",
+        "subject_hash=bd45fdc554",
         "agent_stage=4"
       ],
       "recommendation": "Run treasury guardian follow-up pass, capture artifacts, then prioritize medium items first.",
-      "estimated_tokens": 10981
+      "estimated_tokens": 12489
     },
     {
       "agent": "Incident Reporter",
       "role": "synthesizes operator-grade markdown incident reports",
-      "severity": "critical",
-      "confidence": 0.73,
-      "finding": "Incident Reporter reviewed DeFi risk monitoring signal: early-stage restaking protocol research pack with incomplete tokenomics. Risk pattern=critical confidence=0.73.",
+      "severity": "low",
+      "confidence": 0.67,
+      "finding": "Incident Reporter reviewed DeFi risk monitoring signal: early-stage restaking protocol with incomplete tokenomics. Risk pattern=low confidence=0.67.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=64be0fb142",
+        "subject_hash=bd45fdc554",
         "agent_stage=5"
       ],
-      "recommendation": "Run incident reporter follow-up pass, capture artifacts, then prioritize critical items first.",
-      "estimated_tokens": 11467
+      "recommendation": "Run incident reporter follow-up pass, capture artifacts, then prioritize low items first.",
+      "estimated_tokens": 13532
     }
   ]
 }

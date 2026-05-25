@@ -1,4 +1,4 @@
 ResearchForge AI
-5 specialist agents completed; 2 high-priority findings; 53172 estimated tokens.
-tokens=53172
-daily_projection=5104512
+5 specialist agents completed; 2 high-priority findings; 51767 estimated tokens.
+tokens=51767
+daily=4969632

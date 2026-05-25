@@ -207,5 +207,6 @@ function formatUSD(v) { if (!v) return '—'; if (v >= 1e9) return '$' + (v/1e9)
 function formatNum(n) { return n >= 1e9 ? (n/1e9).toFixed(2)+'B' : n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(0)+'K' : n.toFixed(0); }
 $('tokenInput').addEventListener('keydown', e => { if (e.key === 'Enter') research(); });
 </script>
+<script src="static/upgrade.js"></script>
 </body>
 </html>
